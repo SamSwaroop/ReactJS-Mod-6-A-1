@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="piano.css">
+
+
+
+    
+</head>
+<body>
+    <div class="piano">
+        <div class="key white" data-note="C">A</div>
+        <div class="key black" data-note="Cs">W</div>
+        <div class="key white" data-note="D">S</div>
+        <div class="key black" data-note="Ds">E</div>
+        <div class="key white" data-note="E">D</div>
+        <div class="key white" data-note="F">F</div>
+        <div class="key black" data-note="Fs">R</div>
+        <div class="key white" data-note="G">G</div>
+        <div class="key black" data-note="Gs">T</div>
+        <div class="key white" data-note="A">H</div>
+        <div class="key black" data-note="As">Y</div>
+        <div class="key white" data-note="B">J</div>
+    </div>
+
+    <audio src="https://nemo0.github.io/js-piano/notes/C4.mp3" id="C"></audio>
+    <audio src="Piano-A4.ogg" id="Cs"></audio>
+    <audio src="Piano-C3.ogg" id="D"></audio>
+    <audio src="Piano-C4.ogg" id="Ds"></audio>
+    <audio src="Piano-A4.ogg" id="E"></audio>
+    <audio src="Piano-A3.ogg" id="F"></audio>
+    <audio src="Piano-A2.ogg" id="Fs"></audio>
+    <audio src="Piano-C1.ogg" id="G"></audio>
+    <audio src="Piano-C6.ogg" id="Gs"></audio>
+    <audio src="Piano-A3.ogg" id="A"></audio>
+    <audio src="Piano-C4.ogg" id="As"></audio>
+    <audio src="Piano-C7.ogg" id="B"></audio>
+
+    <script>
+        const keys = document.querySelectorAll('.key');
+        const regulars = document.querySelectorAll('.key.white');
+        const sharps = document.querySelectorAll('.key.black');
+        const whites = ['a', 's', 'd', 'f', 'g', 'h', 'j'];
+        const blacks = ['w', 'e', 'r', 't', 'y']
+
+        keys.forEach(key => {
+            key.addEventListener('click', () => playNote(key))
+        })
+
+        document.addEventListener('keydown', e => {
+            if (e.repeat) return
+            const key = e.key
+            const whiteKeyIndex = whites.indexOf(key)
+            const blackKeyIndex = blacks.indexOf(key)
+
+            if (whiteKeyIndex > -1) playNote(regulars[whiteKeyIndex])
+            if (blackKeyIndex > -1) playNote(sharps[blackKeyIndex])
+        })
+
+        let playNote = (key) => {
+            const noteSound = document.getElementById(key.dataset.note)
+            noteSound.currentTime = 0
+            noteSound.play()
+            key.classList.add('active')
+            noteSound.addEventListener('ended', () => {
+                key.classList.remove('active')
+            })
+        }
+    </script>
+
+    
+
+
+
+</body>
+</html>

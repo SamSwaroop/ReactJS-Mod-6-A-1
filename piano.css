@@ -1,0 +1,52 @@
+
+        * {
+            margin: 0px;
+            padding: 0;
+            box-sizing: border-box;
+            padding-top: 50px;
+        }
+
+        body {
+            background: #eff312;
+            /* fallback for old browsers */
+            
+
+        }
+
+        .piano {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .key {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            font-size: larger;
+            font-weight: bold;
+            padding-bottom: 20px;
+            padding-top: 50px;
+        }
+
+        .white {
+            width: 9%;
+            min-width: 40px;
+            height: 70%;
+            background-color: white;
+            border: 1px solid #ccc;
+            color: #000;
+        }
+
+        .black {
+            width: 8%;
+            height: 45%;
+            margin-left: -4%;
+            margin-right: -4%;
+            z-index: 2;
+            background-color: black;
+            color: #fff;
+        }
+
+        
